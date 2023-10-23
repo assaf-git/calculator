@@ -35,7 +35,22 @@
         let operator = inputArray[1];
         let secondNumber = inputArray[2];
 
-        
+        function operate(operator) {
+            if (operator === '+') {
+                add();
+            }
+            if (operator === '-') {
+                subtract();
+            }
+            if (operator === '*') {
+                multiply();
+            }
+            if (operator === '/') {
+                divide();
+            }
+        }
+
+        operate();
 
     </script>
 

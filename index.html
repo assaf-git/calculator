@@ -9,6 +9,13 @@
     
     <script>
 
+        let input = prompt("Input: ");
+        let inputArray = input.split(' ');
+        let firstNumber = +inputArray[0];
+        let operator = inputArray[1];
+        let secondNumber = +inputArray[2];
+        // let result = 0;
+
         const add = () => result = firstNumber + secondNumber;
 
         const subtract = () => result = firstNumber - secondNumber;
@@ -17,26 +24,11 @@
 
         const divide =  () => result = firstNumber / secondNumber;
 
-        let input = prompt("Input: ");
-        let inputArray = input.split(' ');
-        let firstNumber = +inputArray[0];
-        let operator = inputArray[1];
-        let secondNumber = +inputArray[2];
-        // let result = 0;
-
         function operate() {
-            if (operator == '+') {
-                add();
-            }
-            else if (operator === '-') {
-                return subtract();
-            }
-            else if (operator === '*') {
-                return multiply();
-            }
-            else if (operator === '/') {
-                return divide();
-            }
+            return operator === '+' ? add()
+            : operator === '-' ? subtract()
+            : operator === '*' ? multiply()
+            : operator === '/' ? divide() : false
         }
 
         operate(operator, firstNumber, secondNumber);

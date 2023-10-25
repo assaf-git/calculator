@@ -9,48 +9,46 @@
     
     <script>
 
-        function add(firstNumber, secondNumber) {
+        const add = function() {
             return result = firstNumber + secondNumber;
-            console.log(result);
         }
 
-        function subtract(firstNumber, secondNumber) {
+        const subtract = function() {
             return result = firstNumber - secondNumber;
-            console.log(result);
         }
 
-        function multiply(firstNumber, secondNumber) {
+        const multiply = function() {
             return result = firstNumber * secondNumber;
-            console.log(result);
         }
 
-        function divide(firstNumber, secondNumber) {
+        const divide =  function() {
             return result = firstNumber / secondNumber;
-            console.log(result);
         }
 
         let input = prompt("Input: ");
         let inputArray = input.split(' ');
-        let firstNumber = inputArray[0];
+        let firstNumber = +inputArray[0];
         let operator = inputArray[1];
-        let secondNumber = inputArray[2];
+        let secondNumber = +inputArray[2];
+        // let result = 0;
 
-        function operate(operator) {
-            if (operator === '+') {
+        function operate() {
+            if (operator == '+') {
                 add();
             }
-            if (operator === '-') {
-                subtract();
+            else if (operator === '-') {
+                return subtract();
             }
-            if (operator === '*') {
-                multiply();
+            else if (operator === '*') {
+                return multiply();
             }
-            if (operator === '/') {
-                divide();
+            else if (operator === '/') {
+                return divide();
             }
         }
 
-        operate();
+        operate(operator, firstNumber, secondNumber);
+        console.log(result);
 
     </script>
 

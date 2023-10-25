@@ -1,3 +1,17 @@
+const display = document.querySelector('.display');
+
+const clearButton = document.querySelector('.clear');
+
+const deleteButton = document.querySelector('.delete');
+
+const numberButtons = document.querySelectorAll('.numbers');
+
+const operatorButtons = document.querySelectorAll('.operators');
+
+const equalsButton = document.querySelector('.equals');
+
+const floatButton = document.querySelector('.float');
+
 let input = prompt("Input: ");
 let inputArray = input.split(' ');
 let firstNumber = +inputArray[0];

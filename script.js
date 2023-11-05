@@ -27,6 +27,14 @@ const multiply = () => result = firstNumber * secondNumber;
 
 const divide =  () => result = firstNumber / secondNumber;
 
+function inputDisplay() {
+    numberButtons.forEach((numberButton) => {
+        numberButton.addEventListener('click', () => {
+            
+        })
+    })
+}
+
 function operate() {
     return operator === '+' ? add()
     : operator === '-' ? subtract()

@@ -12,12 +12,15 @@ const equalsButton = document.querySelector('.equals');
 
 const floatButton = document.querySelector('.float');
 
-let input = prompt("Input: ");
-let inputArray = input.split(' ');
-let firstNumber = +inputArray[0];
-let operator = inputArray[1];
-let secondNumber = +inputArray[2];
+// let input = prompt("Input: ");
+// let inputArray = input.split(' ');
+// let firstNumber = +inputArray[0];
+// let operator = inputArray[1];
+// let secondNumber = +inputArray[2];
 // let result = 0;
+
+let inputValue = 0;
+display.textContent = inputValue;
 
 const add = () => result = firstNumber + secondNumber;
 
@@ -27,13 +30,12 @@ const multiply = () => result = firstNumber * secondNumber;
 
 const divide =  () => result = firstNumber / secondNumber;
 
-function inputDisplay() {
     numberButtons.forEach((numberButton) => {
         numberButton.addEventListener('click', () => {
-            
+            inputValue = numberButton.id;
+            display.textContent = inputValue;
         })
     })
-}
 
 function operate() {
     return operator === '+' ? add()
@@ -42,5 +44,5 @@ function operate() {
     : operator === '/' ? divide() : false
 }
 
-operate(operator, firstNumber, secondNumber);
-console.log(result);
+// operate(operator, firstNumber, secondNumber);
+// console.log(result);

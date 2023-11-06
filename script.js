@@ -52,14 +52,24 @@ numberButtons.forEach((numberButton) => {
 
 operatorButtons.forEach((operatorButton) => {
     operatorButton.addEventListener('click', () => {
-        valueStorage["operatorValue"] = operatorButton.id;
-        console.log(valueStorage["operatorValue"]);
+        if (valueStorage["operatorValue"] !== undefined) {
+            operate(valueStorage["operatorValue"], valueStorage["initialValue"], valueStorage["nextValue"]);
+            display.textContent = valueStorage["initialValue"];
+            valueStorage["operatorValue"] = operatorButton.id;
+            valueStorage["nextValue"] = null;
+            console.log(valueStorage["initialValue"]);
+            console.log(valueStorage["operatorValue"]);
+        } else {
+            valueStorage["operatorValue"] = operatorButton.id;
+            console.log(valueStorage["operatorValue"]);
+        }
     })
 })
 
 equalsButton.addEventListener('click', () => {
     operate(valueStorage["operatorValue"], valueStorage["initialValue"], valueStorage["nextValue"]);
     display.textContent = valueStorage["initialValue"];
+    valueStorage["operatorValue"] = null;
     console.log(valueStorage["initialValue"]);
 })
 

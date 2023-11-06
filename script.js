@@ -22,7 +22,7 @@ const floatButton = document.querySelector('.float');
 let inputValue = 0;
 display.textContent = inputValue;
 let secondValue;
-let operatorValue;
+// let operatorValue;
 
 let valueStorage = {
     initialValue: null,
@@ -44,8 +44,8 @@ numberButtons.forEach((numberButton) => {
 
 operatorButtons.forEach((operatorButton) => {
     operatorButton.addEventListener('click', () => {
-        operatorValue = operatorButton.id;
-        console.log(operatorValue);
+        valueStorage["operatorValue"] = operatorButton.id;
+        console.log(valueStorage["operatorValue"]);
     })
 })
 

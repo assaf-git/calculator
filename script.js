@@ -24,6 +24,10 @@ display.textContent = inputValue;
 let secondValue;
 let operatorValue;
 
+let valueStorage = {
+    initialValue: null,
+};
+
 numberButtons.forEach((numberButton) => {
     numberButton.addEventListener('click', () => {
         inputValue = numberButton.id;

@@ -30,9 +30,15 @@ let valueStorage = {
 
 numberButtons.forEach((numberButton) => {
     numberButton.addEventListener('click', () => {
-        valueStorage["initialValue"] = numberButton.id;
-        display.textContent = valueStorage["initialValue"];
-        console.log(valueStorage["initialValue"]);
+        if (valueStorage["initialValue"] != null) {
+            valueStorage["nextValue"] = numberButton.id;
+            display.textContent = valueStorage["nextValue"];
+            console.log(valueStorage["nextValue"]);
+        } else {
+            valueStorage["initialValue"] = numberButton.id;
+            display.textContent = valueStorage["initialValue"];
+            console.log(valueStorage["initialValue"]);
+        }
     })
 })
 

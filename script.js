@@ -24,14 +24,6 @@ display.textContent = inputValue;
 let secondValue;
 let operatorValue;
 
-const add = () => result = firstNumber + secondNumber;
-
-const subtract = () => result = firstNumber - secondNumber;
-
-const multiply = () => result = firstNumber * secondNumber;
-
-const divide =  () => result = firstNumber / secondNumber;
-
 numberButtons.forEach((numberButton) => {
     numberButton.addEventListener('click', () => {
         inputValue = numberButton.id;
@@ -47,11 +39,23 @@ operatorButtons.forEach((operatorButton) => {
     })
 })
 
+equalsButton.addEventListener('click', () => {
+    operate(operatorValue, firstNumber, secondNumber);
+})
+
+const add = () => result = firstNumber + secondNumber;
+
+const subtract = () => result = firstNumber - secondNumber;
+
+const multiply = () => result = firstNumber * secondNumber;
+
+const divide =  () => result = firstNumber / secondNumber;
+
 function operate() {
-    return operator === '+' ? add()
-    : operator === '-' ? subtract()
-    : operator === '*' ? multiply()
-    : operator === '/' ? divide() : false
+    return operatorValue === '+' ? add()
+    : operatorValue === '-' ? subtract()
+    : operatorValue === '*' ? multiply()
+    : operatorValue === '/' ? divide() : false
 }
 
 // operate(operator, firstNumber, secondNumber);

@@ -21,6 +21,8 @@ const floatButton = document.querySelector('.float');
 
 let inputValue = 0;
 display.textContent = inputValue;
+let secondValue;
+let operatorValue;
 
 const add = () => result = firstNumber + secondNumber;
 
@@ -30,12 +32,20 @@ const multiply = () => result = firstNumber * secondNumber;
 
 const divide =  () => result = firstNumber / secondNumber;
 
-    numberButtons.forEach((numberButton) => {
-        numberButton.addEventListener('click', () => {
-            inputValue = numberButton.id;
-            display.textContent = inputValue;
-        })
+numberButtons.forEach((numberButton) => {
+    numberButton.addEventListener('click', () => {
+        inputValue = numberButton.id;
+        display.textContent = inputValue;
+        console.log(inputValue);
     })
+})
+
+operatorButtons.forEach((operatorButton) => {
+    operatorButton.addEventListener('click', () => {
+        operatorValue = operatorButton.id;
+        console.log(operatorValue);
+    })
+})
 
 function operate() {
     return operator === '+' ? add()

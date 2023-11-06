@@ -50,22 +50,24 @@ operatorButtons.forEach((operatorButton) => {
 })
 
 equalsButton.addEventListener('click', () => {
-    operate(operatorValue, firstNumber, secondNumber);
+    operate(valueStorage["operatorValue"], valueStorage["initialValue"], valueStorage["nextValue"]);
+    display.textContent = valueStorage["initialValue"];
+    console.log(valueStorage["initialValue"]);
 })
 
-const add = () => result = firstNumber + secondNumber;
+const add = () => valueStorage["initialValue"] = +valueStorage["initialValue"] + +valueStorage["nextValue"];
 
-const subtract = () => result = firstNumber - secondNumber;
+const subtract = () => valueStorage["initialValue"] = +valueStorage["initialValue"] - +valueStorage["nextValue"];
 
-const multiply = () => result = firstNumber * secondNumber;
+const multiply = () => valueStorage["initialValue"] = +valueStorage["initialValue"] * +valueStorage["nextValue"];
 
-const divide =  () => result = firstNumber / secondNumber;
+const divide =  () => valueStorage["initialValue"] = +valueStorage["initialValue"] / +valueStorage["nextValue"];
 
 function operate() {
-    return operatorValue === '+' ? add()
-    : operatorValue === '-' ? subtract()
-    : operatorValue === '*' ? multiply()
-    : operatorValue === '/' ? divide() : false
+    return valueStorage["operatorValue"] === '+' ? add()
+    : valueStorage["operatorValue"] === '-' ? subtract()
+    : valueStorage["operatorValue"] === '*' ? multiply()
+    : valueStorage["operatorValue"] === '/' ? divide() : false
 }
 
 // operate(operator, firstNumber, secondNumber);

@@ -63,6 +63,9 @@ operatorButtons.forEach((operatorButton) => {
 
 // Calculates and displays the result
 equalsButton.addEventListener('click', () => {
+    if (valueStorage["initialValue"] == null || valueStorage["operatorValue"] == undefined || valueStorage["nextValue"] == undefined) {
+        return false;
+    }
     operate(valueStorage["operatorValue"], valueStorage["initialValue"], valueStorage["nextValue"]);
     valueStorage["initialValue"] = valueStorage["resultValue"];
     display.textContent = Math.round(valueStorage["resultValue"] * 10000000) / 10000000;

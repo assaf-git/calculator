@@ -106,6 +106,19 @@ clearButton.addEventListener('click', () => {
     display.textContent = 0;
 })
 
+// Deletes current number only and clears display
+deleteButton.addEventListener('click', () => {
+    if (valueStorage["initialValue"] != null) {
+        delete valueStorage["nextValue"];
+        delete valueStorage["floatValue"];
+        display.textContent = "";
+    } else {
+        delete valueStorage["initialValue"];
+        delete valueStorage["floatValue"];
+        display.textContent = "";
+    }
+})
+
 // Arithmetic functions
 const add = () => valueStorage["resultValue"] = +valueStorage["initialValue"] + +valueStorage["nextValue"];
 const subtract = () => valueStorage["resultValue"] = +valueStorage["initialValue"] - +valueStorage["nextValue"];

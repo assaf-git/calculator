@@ -48,16 +48,18 @@ numberButtons.forEach((numberButton) => {
 // Assigns selected operator input to object member
 operatorButtons.forEach((operatorButton) => {
     operatorButton.addEventListener('click', () => {
-        if (valueStorage["operatorValue"] !== undefined) { // Calculates and displays result if operator has been input after first number pair (e.g. 4+5+ will display 9)
+        if (valueStorage["operatorValue"] != undefined) { // Calculates and displays result if operator has been input after first number pair (e.g. 4+5+ will display 9)
             operate(valueStorage["operatorValue"], valueStorage["initialValue"], valueStorage["nextValue"]);
             valueStorage["initialValue"] = valueStorage["resultValue"];
             display.textContent = Math.round(valueStorage["resultValue"] * 10000000) / 10000000;;
             valueStorage["operatorValue"] = operatorButton.id;
-            valueStorage["nextValue"] = null;
+            delete valueStorage["nextValue"];
+            delete valueStorage["floatValue"];
             console.log(valueStorage["initialValue"]);
             console.log(valueStorage["operatorValue"]);
         } else {
             valueStorage["operatorValue"] = operatorButton.id;
+            delete valueStorage["floatValue"];
             console.log(valueStorage["operatorValue"]);
         }
     })
@@ -75,8 +77,23 @@ equalsButton.addEventListener('click', () => {
     operate(valueStorage["operatorValue"], valueStorage["initialValue"], valueStorage["nextValue"]);
     valueStorage["initialValue"] = valueStorage["resultValue"];
     display.textContent = Math.round(valueStorage["resultValue"] * 10000000) / 10000000;
-    valueStorage["operatorValue"] = null;
+    delete valueStorage["operatorValue"];
+    delete valueStorage["floatValue"];
     console.log(valueStorage["initialValue"]);
+})
+
+// Allows for decimal number inputs
+floatButton.addEventListener('click', () => {
+    if (valueStorage["nextValue"] == undefined && valueStorage["floatValue"] == undefined) { // Decimal point for initialValue
+        valueStorage["initialValue"] += floatButton.id;
+        display.textContent = valueStorage["initialValue"];
+    } else if (valueStorage["initialValue"] != null && valueStorage["floatValue"] == undefined) { // Decimal point for nextValue
+        valueStorage["nextValue"] += floatButton.id;
+        display.textContent = valueStorage["nextValue"];
+    } else if (valueStorage["floatValue"] == ".") { // Disallows more than 1 decimal point per number
+        return false;
+    }
+    valueStorage["floatValue"] = floatButton.id;
 })
 
 // Clears all values and sets display to 0
@@ -85,6 +102,7 @@ clearButton.addEventListener('click', () => {
     delete valueStorage["operatorValue"];
     delete valueStorage["nextValue"];
     delete valueStorage["resultValue"];
+    delete valueStorage["floatValue"];
     display.textContent = 0;
 })
 

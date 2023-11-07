@@ -12,9 +12,8 @@ const equalsButton = document.querySelector('.equals');
 
 const floatButton = document.querySelector('.float');
 
-// Can I get rid of these?
-let inputValue = 0;
-display.textContent = inputValue;
+
+display.textContent = 0;
 
 let valueStorage = {
     initialValue: null,
@@ -71,6 +70,15 @@ equalsButton.addEventListener('click', () => {
     display.textContent = Math.round(valueStorage["resultValue"] * 10000000) / 10000000;
     valueStorage["operatorValue"] = null;
     console.log(valueStorage["initialValue"]);
+})
+
+// Clears all values and sets display to 0
+clearButton.addEventListener('click', () => {
+    valueStorage["initialValue"] = null;
+    delete valueStorage["operatorValue"];
+    delete valueStorage["nextValue"];
+    delete valueStorage["resultValue"];
+    display.textContent = 0;
 })
 
 // Arithmetic functions

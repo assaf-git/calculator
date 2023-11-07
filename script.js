@@ -26,16 +26,19 @@ numberButtons.forEach((numberButton) => {
             valueStorage["initialValue"] += numberButton.id;
             display.textContent = valueStorage["initialValue"];
             console.log(valueStorage["initialValue"]);
-        } else if (valueStorage["initialValue"] != null && valueStorage["nextValue"] != null) { // Allows more than one digit for nextValue and assigns it
+        } else if (valueStorage["initialValue"] != null && valueStorage["nextValue"] != null && display.textContent != "Nope!") { // Allows more than one digit for nextValue and assigns it
             valueStorage["nextValue"] += numberButton.id;
             display.textContent = valueStorage["nextValue"];
             console.log(valueStorage["nextValue"]);
-        } else if (valueStorage["initialValue"] != null) {      // Assigns nextValue
+        } else if (valueStorage["initialValue"] != null && display.textContent != "Nope!") {      // Assigns nextValue
             valueStorage["nextValue"] = numberButton.id;
             display.textContent = valueStorage["nextValue"];
             console.log(valueStorage["nextValue"]);
         } else {                                                // Assigns initialValue
             valueStorage["initialValue"] = numberButton.id;
+            delete valueStorage["operatorValue"];
+            delete valueStorage["nextValue"];
+            delete valueStorage["resultValue"];
             display.textContent = valueStorage["initialValue"];
             console.log(valueStorage["initialValue"]);
         }
@@ -62,7 +65,11 @@ operatorButtons.forEach((operatorButton) => {
 
 // Calculates and displays the result
 equalsButton.addEventListener('click', () => {
-    if (valueStorage["initialValue"] == null || valueStorage["operatorValue"] == undefined || valueStorage["nextValue"] == undefined) {
+    if (valueStorage["initialValue"] == null || valueStorage["operatorValue"] == undefined || valueStorage["nextValue"] == undefined) { // Prevents incorrect equals sign input error
+        return false;
+    }
+    if (valueStorage["operatorValue"] === '/' && valueStorage["nextValue"] === "0") { // Prevents divide by 0 error
+        display.textContent = "Nope!";
         return false;
     }
     operate(valueStorage["operatorValue"], valueStorage["initialValue"], valueStorage["nextValue"]);

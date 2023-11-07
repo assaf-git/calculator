@@ -49,7 +49,7 @@ operatorButtons.forEach((operatorButton) => {
         if (valueStorage["operatorValue"] !== undefined) { // Calculates and displays result if operator has been input after first number pair (e.g. 4+5+ will display 9)
             operate(valueStorage["operatorValue"], valueStorage["initialValue"], valueStorage["nextValue"]);
             valueStorage["initialValue"] = valueStorage["resultValue"];
-            display.textContent = valueStorage["resultValue"];
+            display.textContent = Math.round(valueStorage["resultValue"] * 10000000) / 10000000;;
             valueStorage["operatorValue"] = operatorButton.id;
             valueStorage["nextValue"] = null;
             console.log(valueStorage["initialValue"]);
@@ -65,7 +65,7 @@ operatorButtons.forEach((operatorButton) => {
 equalsButton.addEventListener('click', () => {
     operate(valueStorage["operatorValue"], valueStorage["initialValue"], valueStorage["nextValue"]);
     valueStorage["initialValue"] = valueStorage["resultValue"];
-    display.textContent = valueStorage["resultValue"];
+    display.textContent = Math.round(valueStorage["resultValue"] * 10000000) / 10000000;
     valueStorage["operatorValue"] = null;
     console.log(valueStorage["initialValue"]);
 })

@@ -13,8 +13,14 @@ body {
     align-items: center;
 }
 
+.cover {
+    height: 400px;
+    width: 300px;
+    border: 8px solid #404040;
+    border-radius: 4px;
+}
+
 .display {
-    height: 40px;
-    width: 120px;
-    border: 1px solid black;
+    height: 100px;
+    /* width: 120px; */
 }

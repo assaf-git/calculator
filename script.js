@@ -40,16 +40,7 @@ equalsButton.addEventListener('click', () => {
 
 // Allows for decimal number inputs
 floatButton.addEventListener('click', () => {
-    if (valueStorage["nextValue"] == undefined && valueStorage["floatValue"] == undefined) { // Decimal point for initialValue
-        valueStorage["initialValue"] += floatButton.id;
-        display.textContent = valueStorage["initialValue"];
-    } else if (valueStorage["initialValue"] != null && valueStorage["floatValue"] == undefined) { // Decimal point for nextValue
-        valueStorage["nextValue"] += floatButton.id;
-        display.textContent = valueStorage["nextValue"];
-    } else if (valueStorage["floatValue"] == ".") { // Disallows more than 1 decimal point per number
-        return false;
-    }
-    valueStorage["floatValue"] = floatButton.id;
+    floatAssignment(floatButton.id);
 })
 
 // Clears all values and sets display to 0
@@ -106,6 +97,7 @@ document.addEventListener('keydown', (event) => {
     else if (event.key == "*") {operatorAssignment(event.key)}
     else if (event.key == "/") {operatorAssignment(event.key)}
     else if (event.key == "=") {equalAssignment(event.key)}
+    else if (event.key == ".") {floatAssignment(event.key)}
 });
 
 let numberAssignment = (key) => {
@@ -162,4 +154,17 @@ let equalAssignment = () => {
         delete valueStorage["floatValue"];
         console.log(valueStorage["initialValue"]);
     }
+}
+
+let floatAssignment = (key) => {
+    if (valueStorage["nextValue"] == undefined && valueStorage["floatValue"] == undefined) { // Decimal point for initialValue
+        valueStorage["initialValue"] += key;
+        display.textContent = valueStorage["initialValue"];
+    } else if (valueStorage["initialValue"] != null && valueStorage["floatValue"] == undefined) { // Decimal point for nextValue
+        valueStorage["nextValue"] += key;
+        display.textContent = valueStorage["nextValue"];
+    } else if (valueStorage["floatValue"] == ".") { // Disallows more than 1 decimal point per number
+        return false;
+    }
+    valueStorage["floatValue"] = key;
 }

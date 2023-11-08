@@ -55,13 +55,18 @@ body {
 
 .clear,
 .backspace {
-    background-color: #8181B1;
+    background-color: #A6A6C9;
 }
 
 .operators {
-    background-color: #FFEAEC;
+    background-color: #FFD6DA;
 }
 
 .numbers {
-    background-color: #B9D9DF;
+    background-color: #ABD2D8;
+}
+
+.float,
+.equals {
+    background-color: #C0D8CA;
 }

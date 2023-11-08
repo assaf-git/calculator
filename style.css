@@ -38,7 +38,16 @@ body {
 .row-3,
 .row-4,
 .row-5 {
+    width: 100%;
     display: flex;
     flex-grow: 1;
 }
 
+.clear,
+.backspace,
+.numbers,
+.operators,
+.float,
+.equals {
+    width: 100%;
+}

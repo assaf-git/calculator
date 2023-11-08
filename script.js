@@ -22,64 +22,20 @@ let valueStorage = {
 // Assigns selected number to specified object member and displays the input 
 numberButtons.forEach((numberButton) => {
     numberButton.addEventListener('click', () => {
-        if (valueStorage["initialValue"] != null && valueStorage["operatorValue"] == undefined) { // Allows more than one digit for initialValue and assigns it
-            valueStorage["initialValue"] += numberButton.id;
-            display.textContent = valueStorage["initialValue"];
-            console.log(valueStorage["initialValue"]);
-        } else if (valueStorage["initialValue"] != null && valueStorage["nextValue"] != null && display.textContent != "Nope!") { // Allows more than one digit for nextValue and assigns it
-            valueStorage["nextValue"] += numberButton.id;
-            display.textContent = valueStorage["nextValue"];
-            console.log(valueStorage["nextValue"]);
-        } else if (valueStorage["initialValue"] != null && display.textContent != "Nope!") {      // Assigns nextValue
-            valueStorage["nextValue"] = numberButton.id;
-            display.textContent = valueStorage["nextValue"];
-            console.log(valueStorage["nextValue"]);
-        } else {                                                // Assigns initialValue
-            valueStorage["initialValue"] = numberButton.id;
-            delete valueStorage["operatorValue"];
-            delete valueStorage["nextValue"];
-            delete valueStorage["resultValue"];
-            display.textContent = valueStorage["initialValue"];
-            console.log(valueStorage["initialValue"]);
-        }
+        numberAssignment(numberButton.id);
     })
 })
 
 // Assigns selected operator input to object member
 operatorButtons.forEach((operatorButton) => {
     operatorButton.addEventListener('click', () => {
-        if (valueStorage["operatorValue"] != undefined) { // Calculates and displays result if operator has been input after first number pair (e.g. 4+5+ will display 9)
-            operate(valueStorage["operatorValue"], valueStorage["initialValue"], valueStorage["nextValue"]);
-            valueStorage["initialValue"] = valueStorage["resultValue"];
-            display.textContent = Math.round(valueStorage["resultValue"] * 10000000) / 10000000;;
-            valueStorage["operatorValue"] = operatorButton.id;
-            delete valueStorage["nextValue"];
-            delete valueStorage["floatValue"];
-            console.log(valueStorage["initialValue"]);
-            console.log(valueStorage["operatorValue"]);
-        } else {
-            valueStorage["operatorValue"] = operatorButton.id;
-            delete valueStorage["floatValue"];
-            console.log(valueStorage["operatorValue"]);
-        }
+        operatorAssignment(operatorButton.id)
     })
 })
 
 // Calculates and displays the result
 equalsButton.addEventListener('click', () => {
-    if (valueStorage["initialValue"] == null || valueStorage["operatorValue"] == undefined || valueStorage["nextValue"] == undefined) { // Prevents incorrect equals sign input error
-        return false;
-    } else if (valueStorage["operatorValue"] === '/' && valueStorage["nextValue"] === "0") { // Prevents divide by 0 error
-        display.textContent = "Nope!";
-        return false;
-    } else {
-        operate(valueStorage["operatorValue"], valueStorage["initialValue"], valueStorage["nextValue"]);
-        valueStorage["initialValue"] = valueStorage["resultValue"];
-        display.textContent = Math.round(valueStorage["resultValue"] * 10000000) / 10000000;
-        delete valueStorage["operatorValue"];
-        delete valueStorage["floatValue"];
-        console.log(valueStorage["initialValue"]);
-    }
+    equalAssignment();
 })
 
 // Allows for decimal number inputs
@@ -133,6 +89,7 @@ function operate() {
     : valueStorage["operatorValue"] === '/' ? divide() : false
 }
 
+// Adds keyboard support
 document.addEventListener('keydown', (event) => {
     if (event.key == "0") {numberAssignment(event.key)}
     else if (event.key == "1") {numberAssignment(event.key)}

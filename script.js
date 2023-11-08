@@ -12,35 +12,34 @@ const equalsButton = document.querySelector('.equals');
 
 const floatButton = document.querySelector('.float');
 
-
 display.textContent = 0;
 
 let valueStorage = {
     initialValue: null,
 };
 
-// Assigns selected number to specified object member and displays the input 
 numberButtons.forEach((numberButton) => {
     numberButton.addEventListener('click', () => {
         numberAssignment(numberButton.id);
     })
 })
 
-// Assigns selected operator input to object member
 operatorButtons.forEach((operatorButton) => {
     operatorButton.addEventListener('click', () => {
         operatorAssignment(operatorButton.id)
     })
 })
 
-// Calculates and displays the result
 equalsButton.addEventListener('click', () => {
     equalAssignment();
 })
 
-// Allows for decimal number inputs
 floatButton.addEventListener('click', () => {
     floatAssignment(floatButton.id);
+})
+
+deleteButton.addEventListener('click', () => {
+    backspaceAssignment();
 })
 
 // Clears all values and sets display to 0
@@ -53,46 +52,7 @@ clearButton.addEventListener('click', () => {
     display.textContent = 0;
 })
 
-// Deletes current number only and clears display
-deleteButton.addEventListener('click', () => {
-    backspaceAssignment();
-})
-
-// Arithmetic functions
-const add = () => valueStorage["resultValue"] = +valueStorage["initialValue"] + +valueStorage["nextValue"];
-const subtract = () => valueStorage["resultValue"] = +valueStorage["initialValue"] - +valueStorage["nextValue"];
-const multiply = () => valueStorage["resultValue"] = +valueStorage["initialValue"] * +valueStorage["nextValue"];
-const divide =  () => valueStorage["resultValue"] = +valueStorage["initialValue"] / +valueStorage["nextValue"];
-
-// Calls on selected operator arithmetic function
-function operate() {
-    return valueStorage["operatorValue"] === '+' ? add()
-    : valueStorage["operatorValue"] === '-' ? subtract()
-    : valueStorage["operatorValue"] === '*' ? multiply()
-    : valueStorage["operatorValue"] === '/' ? divide() : false
-}
-
-// Adds keyboard support
-document.addEventListener('keydown', (event) => {
-    if (event.key == "0") {numberAssignment(event.key)}
-    else if (event.key == "1") {numberAssignment(event.key)}
-    else if (event.key == "2") {numberAssignment(event.key)}
-    else if (event.key == "3") {numberAssignment(event.key)}
-    else if (event.key == "4") {numberAssignment(event.key)}
-    else if (event.key == "5") {numberAssignment(event.key)}
-    else if (event.key == "6") {numberAssignment(event.key)}
-    else if (event.key == "7") {numberAssignment(event.key)}
-    else if (event.key == "8") {numberAssignment(event.key)}
-    else if (event.key == "9") {numberAssignment(event.key)}
-    else if (event.key == "+") {operatorAssignment(event.key)}
-    else if (event.key == "-") {operatorAssignment(event.key)}
-    else if (event.key == "*") {operatorAssignment(event.key)}
-    else if (event.key == "/") {operatorAssignment(event.key)}
-    else if (event.key == "=") {equalAssignment(event.key)}
-    else if (event.key == ".") {floatAssignment(event.key)}
-    else if (event.key == "Backspace") {backspaceAssignment(event.key)}
-});
-
+// Assigns selected number to specified object member and displays the input 
 let numberAssignment = (key) => {
     if (valueStorage["initialValue"] != null && valueStorage["operatorValue"] == undefined) { // Allows more than one digit for initialValue and assigns it
         valueStorage["initialValue"] += key;
@@ -116,6 +76,7 @@ let numberAssignment = (key) => {
     }
 }
 
+// Assigns selected operator input to object member
 let operatorAssignment = (key) => {
     if (valueStorage["operatorValue"] != undefined) { // Calculates and displays result if operator has been input after first number pair (e.g. 4+5+ will display 9)
         operate(valueStorage["operatorValue"], valueStorage["initialValue"], valueStorage["nextValue"]);
@@ -133,6 +94,7 @@ let operatorAssignment = (key) => {
     }
 }
 
+// Calculates and displays the result
 let equalAssignment = () => {
     if (valueStorage["initialValue"] == null || valueStorage["operatorValue"] == undefined || valueStorage["nextValue"] == undefined) { // Prevents incorrect equals sign input error
         return false;
@@ -149,6 +111,7 @@ let equalAssignment = () => {
     }
 }
 
+// Allows for decimal number inputs
 let floatAssignment = (key) => {
     if (valueStorage["nextValue"] == undefined && valueStorage["floatValue"] == undefined) { // Decimal point for initialValue
         valueStorage["initialValue"] += key;
@@ -162,6 +125,7 @@ let floatAssignment = (key) => {
     valueStorage["floatValue"] = key;
 }
 
+// Deletes current number only and clears display
 let backspaceAssignment = () => {
     if (valueStorage["initialValue"] != null) {
         delete valueStorage["nextValue"];
@@ -173,3 +137,38 @@ let backspaceAssignment = () => {
         display.textContent = "";
     }
 }
+
+// Calls on selected operator arithmetic function
+function operate() {
+    return valueStorage["operatorValue"] === '+' ? add()
+    : valueStorage["operatorValue"] === '-' ? subtract()
+    : valueStorage["operatorValue"] === '*' ? multiply()
+    : valueStorage["operatorValue"] === '/' ? divide() : false
+}
+
+// Arithmetic functions
+const add = () => valueStorage["resultValue"] = +valueStorage["initialValue"] + +valueStorage["nextValue"];
+const subtract = () => valueStorage["resultValue"] = +valueStorage["initialValue"] - +valueStorage["nextValue"];
+const multiply = () => valueStorage["resultValue"] = +valueStorage["initialValue"] * +valueStorage["nextValue"];
+const divide =  () => valueStorage["resultValue"] = +valueStorage["initialValue"] / +valueStorage["nextValue"];
+
+// Adds keyboard support
+document.addEventListener('keydown', (event) => {
+    if (event.key == "0") {numberAssignment(event.key)}
+    else if (event.key == "1") {numberAssignment(event.key)}
+    else if (event.key == "2") {numberAssignment(event.key)}
+    else if (event.key == "3") {numberAssignment(event.key)}
+    else if (event.key == "4") {numberAssignment(event.key)}
+    else if (event.key == "5") {numberAssignment(event.key)}
+    else if (event.key == "6") {numberAssignment(event.key)}
+    else if (event.key == "7") {numberAssignment(event.key)}
+    else if (event.key == "8") {numberAssignment(event.key)}
+    else if (event.key == "9") {numberAssignment(event.key)}
+    else if (event.key == "+") {operatorAssignment(event.key)}
+    else if (event.key == "-") {operatorAssignment(event.key)}
+    else if (event.key == "*") {operatorAssignment(event.key)}
+    else if (event.key == "/") {operatorAssignment(event.key)}
+    else if (event.key == "=") {equalAssignment(event.key)}
+    else if (event.key == ".") {floatAssignment(event.key)}
+    else if (event.key == "Backspace") {backspaceAssignment(event.key)}
+});

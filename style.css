@@ -25,6 +25,7 @@ body {
     height: 20%;
     display: flex;
     border: 4px solid #25252D;
+    border-radius: 1px;
     background-color: #D2D2DA;
 }
 
@@ -33,6 +34,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #9A9AAC;
 }
 
 .row-1,
@@ -52,6 +54,7 @@ body {
 .float,
 .equals {
     width: 100%;
+    border-radius: 6px;
 }
 
 .clear,

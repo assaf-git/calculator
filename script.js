@@ -2,7 +2,7 @@ const display = document.querySelector('.display');
 
 const clearButton = document.querySelector('.clear');
 
-const deleteButton = document.querySelector('.delete');
+const backspaceButton = document.querySelector('.backspace');
 
 const numberButtons = document.querySelectorAll('.numbers');
 
@@ -38,7 +38,7 @@ floatButton.addEventListener('click', () => {
     floatAssignment(floatButton.id);
 })
 
-deleteButton.addEventListener('click', () => {
+backspaceButton.addEventListener('click', () => {
     backspaceAssignment();
 })
 

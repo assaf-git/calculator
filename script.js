@@ -130,12 +130,12 @@ let backspaceAssignment = () => {
 
 // Clears all values and sets display to 0
 let clearAssignment = () => {
+    for (let key in valueStorage) {
+        if (valueStorage.hasOwnProperty(key)) {
+            delete valueStorage[key];
+        }
+    }
     valueStorage["initialValue"] = null;
-    delete valueStorage["operatorValue"];
-    delete valueStorage["nextValue"];
-    delete valueStorage["resultValue"];
-    delete valueStorage["floatValue"];
-    delete valueStorage["equalsValue"];
     display.textContent = 0;
 }
 

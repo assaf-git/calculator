@@ -52,3 +52,8 @@ body {
 .equals {
     width: 100%;
 }
+
+.clear,
+.backspace {
+    background-color: #8181B1;
+}

@@ -55,15 +55,7 @@ clearButton.addEventListener('click', () => {
 
 // Deletes current number only and clears display
 deleteButton.addEventListener('click', () => {
-    if (valueStorage["initialValue"] != null) {
-        delete valueStorage["nextValue"];
-        delete valueStorage["floatValue"];
-        display.textContent = "";
-    } else {
-        delete valueStorage["initialValue"];
-        delete valueStorage["floatValue"];
-        display.textContent = "";
-    }
+    backspaceAssignment();
 })
 
 // Arithmetic functions
@@ -98,6 +90,7 @@ document.addEventListener('keydown', (event) => {
     else if (event.key == "/") {operatorAssignment(event.key)}
     else if (event.key == "=") {equalAssignment(event.key)}
     else if (event.key == ".") {floatAssignment(event.key)}
+    else if (event.key == "Backspace") {backspaceAssignment(event.key)}
 });
 
 let numberAssignment = (key) => {
@@ -167,4 +160,16 @@ let floatAssignment = (key) => {
         return false;
     }
     valueStorage["floatValue"] = key;
+}
+
+let backspaceAssignment = () => {
+    if (valueStorage["initialValue"] != null) {
+        delete valueStorage["nextValue"];
+        delete valueStorage["floatValue"];
+        display.textContent = "";
+    } else {
+        delete valueStorage["initialValue"];
+        delete valueStorage["floatValue"];
+        display.textContent = "";
+    }
 }

@@ -42,19 +42,18 @@ backspaceButton.addEventListener('click', () => {
     backspaceAssignment();
 })
 
-// Clears all values and sets display to 0
 clearButton.addEventListener('click', () => {
-    valueStorage["initialValue"] = null;
-    delete valueStorage["operatorValue"];
-    delete valueStorage["nextValue"];
-    delete valueStorage["resultValue"];
-    delete valueStorage["floatValue"];
-    display.textContent = 0;
+    clearAssignment();
 })
 
 // Assigns selected number to specified object member and displays the input 
 let numberAssignment = (key) => {
-    if (valueStorage["initialValue"] != null && valueStorage["operatorValue"] == undefined) { // Allows more than one digit for initialValue and assigns it
+    if (valueStorage["equalsValue"] != undefined) { // Clears calculator and displays new number after equals sign input
+        clearAssignment();
+        valueStorage["initialValue"] = key;
+        display.textContent = valueStorage["initialValue"];
+        console.log(valueStorage["initialValue"]);
+    } else if (valueStorage["initialValue"] != null && valueStorage["operatorValue"] == undefined) { // Allows more than one digit for initialValue and assigns it
         valueStorage["initialValue"] += key;
         display.textContent = valueStorage["initialValue"];
         console.log(valueStorage["initialValue"]);
@@ -103,6 +102,7 @@ let equalAssignment = () => {
         return false;
     } else {
         operate(valueStorage["operatorValue"], valueStorage["initialValue"], valueStorage["nextValue"]);
+        valueStorage["equalsValue"] = "="
         valueStorage["initialValue"] = valueStorage["resultValue"];
         display.textContent = Math.round(valueStorage["resultValue"] * 10000000) / 10000000;
         delete valueStorage["operatorValue"];
@@ -136,6 +136,17 @@ let backspaceAssignment = () => {
         delete valueStorage["floatValue"];
         display.textContent = "";
     }
+}
+
+// Clears all values and sets display to 0
+let clearAssignment = () => {
+    valueStorage["initialValue"] = null;
+    delete valueStorage["operatorValue"];
+    delete valueStorage["nextValue"];
+    delete valueStorage["resultValue"];
+    delete valueStorage["floatValue"];
+    delete valueStorage["equalsValue"];
+    display.textContent = 0;
 }
 
 // Calls on selected operator arithmetic function

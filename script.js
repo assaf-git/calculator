@@ -52,26 +52,21 @@ let numberAssignment = (key) => {
         clearAssignment();
         valueStorage["initialValue"] = key;
         display.textContent = valueStorage["initialValue"];
-        console.log(valueStorage["initialValue"]);
     } else if (valueStorage["initialValue"] != null && valueStorage["operatorValue"] == undefined) { // Allows more than one digit for initialValue and assigns it
         valueStorage["initialValue"] += key;
         display.textContent = valueStorage["initialValue"];
-        console.log(valueStorage["initialValue"]);
     } else if (valueStorage["initialValue"] != null && valueStorage["nextValue"] != null && display.textContent != "Nope!") { // Allows more than one digit for nextValue and assigns it
         valueStorage["nextValue"] += key;
         display.textContent = valueStorage["nextValue"];
-        console.log(valueStorage["nextValue"]);
     } else if (valueStorage["initialValue"] != null && display.textContent != "Nope!") {      // Assigns nextValue
         valueStorage["nextValue"] = key;
         display.textContent = valueStorage["nextValue"];
-        console.log(valueStorage["nextValue"]);
     } else {                                                // Assigns initialValue
         valueStorage["initialValue"] = key;
         delete valueStorage["operatorValue"];
         delete valueStorage["nextValue"];
         delete valueStorage["resultValue"];
         display.textContent = valueStorage["initialValue"];
-        console.log(valueStorage["initialValue"]);
     }
 }
 
@@ -84,12 +79,9 @@ let operatorAssignment = (key) => {
         valueStorage["operatorValue"] = key;
         delete valueStorage["nextValue"];
         delete valueStorage["floatValue"];
-        console.log(valueStorage["initialValue"]);
-        console.log(valueStorage["operatorValue"]);
     } else {
         valueStorage["operatorValue"] = key;
         delete valueStorage["floatValue"];
-        console.log(valueStorage["operatorValue"]);
     }
 }
 
@@ -107,7 +99,6 @@ let equalAssignment = () => {
         display.textContent = Math.round(valueStorage["resultValue"] * 10000000) / 10000000;
         delete valueStorage["operatorValue"];
         delete valueStorage["floatValue"];
-        console.log(valueStorage["initialValue"]);
     }
 }
 
@@ -121,8 +112,7 @@ let floatAssignment = (key) => {
         display.textContent = valueStorage["nextValue"];
     } else if (valueStorage["floatValue"] == ".") { // Disallows more than 1 decimal point per number
         return false;
-    }
-    valueStorage["floatValue"] = key;
+    } else {valueStorage["floatValue"] = key;}
 }
 
 // Deletes current number only and clears display
